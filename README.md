@@ -1,0 +1,1 @@
+# A weather app in JS without needing a server 

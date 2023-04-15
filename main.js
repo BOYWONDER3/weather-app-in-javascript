@@ -1,11 +1,12 @@
 import './style.css'
 import { getWeather } from './weather'
+import { ICON_MAP } from './iconMap'
 
 getWeather(10, 10, Intl.DateTimeFormat().resolvedOptions().timeZone)
 .then(renderWeather)
 .catch(e => {
-    // console.error(e)
-    // alert('Error getting weather.')
+    console.error(e)
+    alert('Error getting weather.')
 })
 
 function renderWeather({current, daiily, hourly}) {
@@ -21,7 +22,7 @@ function setValue(selector, value, {parent = document} = {}) {
 
 
 function getIconUrl (iconCode) {
-    return `icons/${iconCode}.svg`
+    return `icons/${ICON_MAP.get(iconCode)}.svg`
 }
 
 const currentIcon = document.querySelector("[data-current-icon]")
@@ -34,4 +35,12 @@ function renderCurrentWeather(current) {
     setValue('current-fl-low', current.lowFeelsLike)
     setValue('current-wind', current.windSpeed)
     setValue('current-precip', current.precip)
+}
+
+
+
+const dailySection = document.querySelector('[data-day-section]')
+const dayCardTemplate = documemnt.getElementById('day-Card-Template')
+function renderDailyWeather(daily) {
+   
 }
